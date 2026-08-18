@@ -1,0 +1,3843 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title id="pageTitle">
+        Felipe Lopes Gonçalves | Engenharia de Software
+    </title>
+
+
+    <!-- ==================================================
+         BOOTSTRAP
+    ================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==================================================
+         BOOTSTRAP ICONS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- ==================================================
+         FONTES
+    ================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            background:
+                #f5f7fb;
+
+            color:
+                #172033;
+
+            transition:
+                background 0.4s ease,
+                color 0.4s ease;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* ==================================================
+           FUNDO ANIMADO
+        ================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 520px;
+
+            height: 520px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(37, 99, 235, 0.07);
+
+            top: -230px;
+
+            left: -210px;
+
+            pointer-events: none;
+
+            z-index: -1;
+
+            filter: blur(2px);
+
+            animation:
+                floatingBlue 8s ease-in-out infinite alternate;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 480px;
+
+            height: 480px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(124, 58, 237, 0.06);
+
+            right: -220px;
+
+            bottom: -220px;
+
+            pointer-events: none;
+
+            z-index: -1;
+
+            filter: blur(2px);
+
+            animation:
+                floatingPurple 10s ease-in-out infinite alternate;
+        }
+
+
+        /* ==================================================
+           MOVIMENTO DO FUNDO
+        ================================================== */
+
+        @keyframes floatingBlue {
+
+            0% {
+
+                transform:
+                    translate3d(0, 0, 0)
+                    scale(1);
+            }
+
+
+            50% {
+
+                transform:
+                    translate3d(90px, 55px, 0)
+                    scale(1.08);
+            }
+
+
+            100% {
+
+                transform:
+                    translate3d(30px, 110px, 0)
+                    scale(0.96);
+            }
+
+        }
+
+
+        @keyframes floatingPurple {
+
+            0% {
+
+                transform:
+                    translate3d(0, 0, 0)
+                    scale(1);
+            }
+
+
+            50% {
+
+                transform:
+                    translate3d(-80px, -60px, 0)
+                    scale(1.07);
+            }
+
+
+            100% {
+
+                transform:
+                    translate3d(-25px, -120px, 0)
+                    scale(0.95);
+            }
+
+        }
+
+
+        /* ==================================================
+           NAVBAR
+        ================================================== */
+
+        .navbar-wrapper {
+
+            position: sticky;
+
+            top: 18px;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            padding:
+                0 20px;
+
+            margin-bottom:
+                25px;
+        }
+
+
+        .custom-navbar {
+
+            max-width:
+                1050px;
+
+            margin:
+                auto;
+
+            height:
+                66px;
+
+            padding:
+                8px 10px 8px 14px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            background:
+                rgba(255, 255, 255, 0.88);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border:
+                1px solid rgba(220, 226, 238, 0.9);
+
+            border-radius:
+                18px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(25, 38, 65, 0.08);
+
+            transition:
+                background 0.4s ease,
+                border 0.4s ease;
+        }
+
+
+        /* ==================================================
+           IDENTIDADE DA NAVBAR
+        ================================================== */
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            color:
+                #182033;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-weight:
+                700;
+
+            font-size:
+                15px;
+        }
+
+
+        .brand-photo {
+
+            width:
+                39px;
+
+            height:
+                39px;
+
+            flex-shrink:
+                0;
+
+            object-fit:
+                cover;
+
+            border-radius:
+                11px;
+
+            border:
+                2px solid #ffffff;
+
+            box-shadow:
+                0 4px 14px
+                rgba(23, 32, 51, 0.18);
+        }
+
+
+        .brand-text {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            line-height:
+                1.1;
+        }
+
+
+        .brand-name {
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+        }
+
+
+        .brand-role {
+
+            margin-top:
+                3px;
+
+            font-size:
+                9px;
+
+            color:
+                #8a93a5;
+
+            letter-spacing:
+                0.6px;
+
+            text-transform:
+                uppercase;
+        }
+
+
+        /* ==================================================
+           NAVEGAÇÃO
+        ================================================== */
+
+        .navigation {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                4px;
+
+            background:
+                #f2f4f8;
+
+            padding:
+                4px;
+
+            border-radius:
+                12px;
+        }
+
+
+        .navigation a {
+
+            padding:
+                8px 13px;
+
+            border-radius:
+                9px;
+
+            color:
+                #667085;
+
+            font-size:
+                12px;
+
+            font-weight:
+                600;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .navigation a:hover {
+
+            color:
+                #172033;
+
+            background:
+                white;
+
+            box-shadow:
+                0 2px 8px
+                rgba(0, 0, 0, 0.05);
+        }
+
+
+        .navigation a.active {
+
+            color:
+                #172033;
+
+            background:
+                white;
+
+            box-shadow:
+                0 2px 8px
+                rgba(0, 0, 0, 0.06);
+        }
+
+
+        /* ==================================================
+           DARK MODE
+        ================================================== */
+
+        .dark-mode-button {
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                1px solid #e0e5ed;
+
+            border-radius:
+                11px;
+
+            background:
+                white;
+
+            color:
+                #526070;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .dark-mode-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            color:
+                #2563eb;
+
+            border-color:
+                #b8cdf4;
+        }
+
+
+        /* ==================================================
+           CONTAINER PRINCIPAL
+        ================================================== */
+
+        .main-container {
+
+            max-width:
+                1050px;
+
+            margin:
+                auto;
+
+            padding:
+                15px 20px 0;
+        }
+
+
+        /* ==================================================
+           HERO
+        ================================================== */
+
+        .hero {
+
+            position:
+                relative;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                285px 1fr;
+
+            min-height:
+                360px;
+
+            overflow:
+                hidden;
+
+            background:
+                white;
+
+            border:
+                1px solid #e2e7ef;
+
+            border-radius:
+                26px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(24, 38, 66, 0.08);
+
+            animation:
+                fadeUp 0.7s ease;
+        }
+
+
+        /* ==================================================
+           ÁREA DA FOTO
+        ================================================== */
+
+        .hero-profile {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                35px 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #eaf2ff,
+                    #f2edff
+                );
+
+            border-right:
+                1px solid #e1e7f0;
+
+            overflow:
+                hidden;
+        }
+
+
+        .hero-profile::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                210px;
+
+            height:
+                210px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(37, 99, 235, 0.08);
+
+            top:
+                -100px;
+
+            left:
+                -90px;
+        }
+
+
+        .hero-profile::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                170px;
+
+            height:
+                170px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(124, 58, 237, 0.08);
+
+            bottom:
+                -100px;
+
+            right:
+                -80px;
+        }
+
+
+        /* ==================================================
+           SELETOR DE IDIOMA
+        ================================================== */
+
+        .language-switcher {
+
+            position:
+                absolute;
+
+            z-index:
+                5;
+
+            top:
+                18px;
+
+            right:
+                18px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                2px;
+
+            padding:
+                3px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.9);
+
+            background:
+                rgba(255, 255, 255, 0.76);
+
+            backdrop-filter:
+                blur(10px);
+
+            border-radius:
+                9px;
+
+            box-shadow:
+                0 4px 14px
+                rgba(50, 70, 110, 0.08);
+        }
+
+
+        .language-button {
+
+            border:
+                none;
+
+            background:
+                transparent;
+
+            color:
+                #7c8798;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            padding:
+                5px 7px;
+
+            border-radius:
+                6px;
+
+            cursor:
+                pointer;
+
+            letter-spacing:
+                0.5px;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .language-button:hover {
+
+            color:
+                #2563eb;
+        }
+
+
+        .language-button.active {
+
+            background:
+                #172033;
+
+            color:
+                white;
+
+            box-shadow:
+                0 2px 7px
+                rgba(23, 32, 51, 0.15);
+        }
+
+
+        /* ==================================================
+           FOTO
+        ================================================== */
+
+        .profile-image {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            width:
+                135px;
+
+            height:
+                135px;
+
+            object-fit:
+                cover;
+
+            border-radius:
+                50%;
+
+            border:
+                5px solid white;
+
+            box-shadow:
+                0 15px 35px
+                rgba(36, 55, 90, 0.16);
+
+            margin-bottom:
+                18px;
+        }
+
+
+        /* ==================================================
+           STATUS
+        ================================================== */
+
+        .profile-status {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            padding:
+                6px 10px;
+
+            border-radius:
+                20px;
+
+            background:
+                rgba(255, 255, 255, 0.8);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.9);
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            color:
+                #536074;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.8px;
+
+            text-align:
+                center;
+        }
+
+
+        .status-dot {
+
+            width:
+                6px;
+
+            height:
+                6px;
+
+            flex-shrink:
+                0;
+
+            border-radius:
+                50%;
+
+            background:
+                #22c55e;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(34, 197, 94, 0.1);
+        }
+
+
+        /* ==================================================
+           CONTEÚDO DO HERO
+        ================================================== */
+
+        .hero-content {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+            padding:
+                45px 55px;
+
+            position:
+                relative;
+        }
+
+
+        .hero-tag {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            width:
+                fit-content;
+
+            padding:
+                6px 10px;
+
+            margin-bottom:
+                16px;
+
+            border-radius:
+                7px;
+
+            background:
+                #edf4ff;
+
+            color:
+                #2563eb;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1.5px;
+        }
+
+
+        /* ==================================================
+           NOME
+        ================================================== */
+
+        .hero-title {
+
+            margin:
+                0;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(2.4rem, 5vw, 4rem);
+
+            line-height:
+                0.98;
+
+            letter-spacing:
+                -2.5px;
+
+            font-weight:
+                700;
+
+            color:
+                #172033;
+        }
+
+
+        .hero-title span {
+
+            color:
+                inherit;
+        }
+
+
+        .hero-role {
+
+            margin-top:
+                13px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            color:
+                #657084;
+        }
+
+
+        .hero-description {
+
+            max-width:
+                610px;
+
+            margin:
+                18px 0 0;
+
+            color:
+                #697386;
+
+            line-height:
+                1.75;
+
+            font-size:
+                14px;
+        }
+
+
+        /* ==================================================
+           MINI INFORMAÇÕES
+        ================================================== */
+
+        .hero-info {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-top:
+                20px;
+        }
+
+
+        .info-pill {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            padding:
+                7px 10px;
+
+            border:
+                1px solid #e3e8f0;
+
+            border-radius:
+                8px;
+
+            color:
+                #687386;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+            background:
+                #fafbfd;
+        }
+
+
+        .info-pill i {
+
+            color:
+                #2563eb;
+
+            font-size:
+                12px;
+        }
+
+
+        /* ==================================================
+           BOTÕES
+        ================================================== */
+
+        .hero-buttons {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                9px;
+
+            margin-top:
+                23px;
+        }
+
+
+        .hero-button {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                10px 15px;
+
+            border-radius:
+                10px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .hero-button.primary {
+
+            background:
+                #172033;
+
+            color:
+                white;
+        }
+
+
+        .hero-button.primary:hover {
+
+            background:
+                #2563eb;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .hero-button.secondary {
+
+            background:
+                #f3f6fa;
+
+            color:
+                #475467;
+
+            border:
+                1px solid #e3e8f0;
+        }
+
+
+        .hero-button.secondary:hover {
+
+            background:
+                white;
+
+            color:
+                #2563eb;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* ==================================================
+           6/8
+        ================================================== */
+
+        .course-progress {
+
+            position:
+                absolute;
+
+            top:
+                25px;
+
+            right:
+                30px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            color:
+                #9aa3b2;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        .course-progress strong {
+
+            color:
+                #2563eb;
+
+            font-size:
+                12px;
+        }
+
+
+        /* ==================================================
+           SEÇÕES
+        ================================================== */
+
+        .section {
+
+            margin-top:
+                28px;
+
+            animation:
+                fadeUp 0.8s ease;
+        }
+
+
+        .section-card {
+
+            background:
+                rgba(255, 255, 255, 0.9);
+
+            border:
+                1px solid #e3e8f0;
+
+            border-radius:
+                22px;
+
+            padding:
+                32px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(25, 38, 65, 0.05);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .section-card:hover {
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .section-label {
+
+            color:
+                #2563eb;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                2px;
+
+            text-transform:
+                uppercase;
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .section-title {
+
+            margin:
+                0 0 22px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                29px;
+
+            letter-spacing:
+                -1.2px;
+
+            font-weight:
+                700;
+
+            color:
+                #172033;
+        }
+
+
+        /* ==================================================
+           SOBRE
+        ================================================== */
+
+        .about-text {
+
+            margin:
+                0;
+
+            color:
+                #697386;
+
+            line-height:
+                1.85;
+
+            font-size:
+                14px;
+        }
+
+
+        /* ==================================================
+           HABILIDADES
+        ================================================== */
+
+        .skills-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                12px;
+        }
+
+
+        .skill-item {
+
+            min-height:
+                74px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            padding:
+                12px;
+
+            background:
+                #fbfcfe;
+
+            border:
+                1px solid #e4e9f1;
+
+            border-radius:
+                15px;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .skill-item:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                #b9cff5;
+
+            box-shadow:
+                0 8px 20px
+                rgba(37, 99, 235, 0.08);
+        }
+
+
+        .skill-icon {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            flex-shrink:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                11px;
+
+            background:
+                #edf4ff;
+
+            color:
+                #2563eb;
+
+            font-size:
+                19px;
+        }
+
+
+        .skill-info {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                5px;
+
+            min-width:
+                0;
+        }
+
+
+        .skill-name {
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            color:
+                #273247;
+        }
+
+
+        /* ==================================================
+           ESTUDANDO
+        ================================================== */
+
+        .studying {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            width:
+                fit-content;
+
+            padding:
+                3px 7px;
+
+            border-radius:
+                5px;
+
+            background:
+                #fff4d6;
+
+            border:
+                1px solid #f4d48a;
+
+            color:
+                #a16207;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.7px;
+
+            white-space:
+                nowrap;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .studying::before {
+
+            content:
+                "";
+
+            width:
+                5px;
+
+            height:
+                5px;
+
+            flex-shrink:
+                0;
+
+            margin-right:
+                5px;
+
+            border-radius:
+                50%;
+
+            background:
+                #f59e0b;
+        }
+
+
+        /* ==================================================
+           TRAJETÓRIA
+        ================================================== */
+
+        .timeline {
+
+            position:
+                relative;
+
+            padding-left:
+                28px;
+        }
+
+
+        .timeline::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                5px;
+
+            bottom:
+                5px;
+
+            left:
+                6px;
+
+            width:
+                2px;
+
+            background:
+                #dce5f4;
+        }
+
+
+        .timeline-item {
+
+            position:
+                relative;
+
+            margin-bottom:
+                28px;
+        }
+
+
+        .timeline-item:last-child {
+
+            margin-bottom:
+                0;
+        }
+
+
+        .timeline-dot {
+
+            position:
+                absolute;
+
+            left:
+                -28px;
+
+            top:
+                3px;
+
+            width:
+                14px;
+
+            height:
+                14px;
+
+            border-radius:
+                50%;
+
+            background:
+                white;
+
+            border:
+                3px solid #2563eb;
+        }
+
+
+        .timeline-date {
+
+            margin-bottom:
+                4px;
+
+            color:
+                #2563eb;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1.3px;
+        }
+
+
+        .timeline-title {
+
+            margin-bottom:
+                5px;
+
+            color:
+                #273247;
+
+            font-size:
+                16px;
+
+            font-weight:
+                800;
+        }
+
+
+        .timeline-description {
+
+            margin:
+                0;
+
+            color:
+                #697386;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.7;
+        }
+
+
+        /* ==================================================
+           CONTATO
+        ================================================== */
+
+        .contact-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                12px;
+        }
+
+
+        .contact-item {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                13px;
+
+            padding:
+                16px;
+
+            background:
+                #fbfcfe;
+
+            border:
+                1px solid #e4e9f1;
+
+            border-radius:
+                15px;
+
+            color:
+                #273247;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .contact-item:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                #b9cff5;
+        }
+
+
+        .contact-icon {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            flex-shrink:
+                0;
+
+            border-radius:
+                11px;
+
+            background:
+                #edf4ff;
+
+            color:
+                #2563eb;
+        }
+
+
+        .contact-label {
+
+            color:
+                #98a1b1;
+
+            font-size:
+                9px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
+
+            font-weight:
+                800;
+        }
+
+
+        .contact-value {
+
+            margin-top:
+                2px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            word-break:
+                break-word;
+        }
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+
+            text-align:
+                center;
+
+            padding:
+                35px 20px;
+
+            color:
+                #8d96a6;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1.2px;
+
+            text-transform:
+                uppercase;
+        }
+
+
+        /* ==================================================
+           DARK MODE
+        ================================================== */
+
+        body.dark-mode {
+
+            background:
+                #0d1117;
+
+            color:
+                #f1f5f9;
+        }
+
+
+        body.dark-mode::before {
+
+            background:
+                rgba(37, 99, 235, 0.07);
+        }
+
+
+        body.dark-mode::after {
+
+            background:
+                rgba(124, 58, 237, 0.06);
+        }
+
+
+        body.dark-mode .custom-navbar {
+
+            background:
+                rgba(20, 26, 36, 0.9);
+
+            border-color:
+                rgba(255, 255, 255, 0.07);
+        }
+
+
+        body.dark-mode .brand {
+
+            color:
+                #f1f5f9;
+        }
+
+
+        body.dark-mode .brand-role {
+
+            color:
+                #8993a4;
+        }
+
+
+        body.dark-mode .navigation {
+
+            background:
+                #171d27;
+        }
+
+
+        body.dark-mode .navigation a {
+
+            color:
+                #929cac;
+        }
+
+
+        body.dark-mode .navigation a:hover,
+        body.dark-mode .navigation a.active {
+
+            background:
+                #242c39;
+
+            color:
+                #f1f5f9;
+        }
+
+
+        body.dark-mode .dark-mode-button {
+
+            background:
+                #171d27;
+
+            border-color:
+                #303947;
+
+            color:
+                #fbbf24;
+        }
+
+
+        body.dark-mode .hero {
+
+            background:
+                #151b24;
+
+            border-color:
+                rgba(255, 255, 255, 0.07);
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        body.dark-mode .hero-profile {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #18243a,
+                    #221d35
+                );
+
+            border-color:
+                rgba(255, 255, 255, 0.06);
+        }
+
+
+        body.dark-mode .language-switcher {
+
+            background:
+                rgba(20, 26, 36, 0.8);
+
+            border-color:
+                rgba(255, 255, 255, 0.08);
+        }
+
+
+        body.dark-mode .language-button {
+
+            color:
+                #9ca6b7;
+        }
+
+
+        body.dark-mode .language-button.active {
+
+            background:
+                #f1f5f9;
+
+            color:
+                #172033;
+        }
+
+
+        body.dark-mode .hero-title {
+
+            color:
+                #f1f5f9;
+        }
+
+
+        body.dark-mode .hero-role,
+        body.dark-mode .hero-description {
+
+            color:
+                #aab4c4;
+        }
+
+
+        body.dark-mode .hero-tag {
+
+            background:
+                rgba(37, 99, 235, 0.12);
+
+            color:
+                #60a5fa;
+        }
+
+
+        body.dark-mode .info-pill {
+
+            background:
+                #1b222d;
+
+            border-color:
+                #2b3544;
+
+            color:
+                #9da7b7;
+        }
+
+
+        body.dark-mode .hero-button.secondary {
+
+            background:
+                #1b222d;
+
+            border-color:
+                #2b3544;
+
+            color:
+                #b7c0cf;
+        }
+
+
+        body.dark-mode .section-card {
+
+            background:
+                #151b24;
+
+            border-color:
+                rgba(255, 255, 255, 0.07);
+        }
+
+
+        body.dark-mode .section-title {
+
+            color:
+                #f1f5f9;
+        }
+
+
+        body.dark-mode .about-text,
+        body.dark-mode .timeline-description {
+
+            color:
+                #aab4c4;
+        }
+
+
+        body.dark-mode .skill-item,
+        body.dark-mode .contact-item {
+
+            background:
+                #1a212c;
+
+            border-color:
+                #2a3442;
+        }
+
+
+        body.dark-mode .skill-name,
+        body.dark-mode .timeline-title,
+        body.dark-mode .contact-item {
+
+            color:
+                #e5eaf1;
+        }
+
+
+        body.dark-mode .skill-icon,
+        body.dark-mode .contact-icon {
+
+            background:
+                rgba(37, 99, 235, 0.12);
+        }
+
+
+        body.dark-mode .studying {
+
+            background:
+                rgba(245, 158, 11, 0.12);
+
+            border-color:
+                rgba(245, 158, 11, 0.3);
+
+            color:
+                #fbbf24;
+        }
+
+
+        body.dark-mode .studying::before {
+
+            background:
+                #fbbf24;
+        }
+
+
+        body.dark-mode .timeline::before {
+
+            background:
+                #303a49;
+        }
+
+
+        body.dark-mode .timeline-dot {
+
+            background:
+                #151b24;
+        }
+
+
+        /* ==================================================
+           ANIMAÇÕES
+        ================================================== */
+
+        @keyframes fadeUp {
+
+            from {
+
+                opacity:
+                    0;
+
+                transform:
+                    translateY(18px);
+            }
+
+            to {
+
+                opacity:
+                    1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* ==================================================
+           RESPONSIVIDADE
+        ================================================== */
+
+        @media (max-width: 900px) {
+
+            .navigation a {
+
+                padding:
+                    8px 9px;
+
+                font-size:
+                    11px;
+            }
+
+
+            .hero {
+
+                grid-template-columns:
+                    240px 1fr;
+            }
+
+
+            .hero-content {
+
+                padding:
+                    35px;
+            }
+
+
+            .skills-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            /* Fundo menor no celular */
+
+            body::before {
+
+                width:
+                    350px;
+
+                height:
+                    350px;
+            }
+
+
+            body::after {
+
+                width:
+                    320px;
+
+                height:
+                    320px;
+            }
+
+
+            .navbar-wrapper {
+
+                top:
+                    10px;
+
+                padding:
+                    0 10px;
+            }
+
+
+            .custom-navbar {
+
+                height:
+                    58px;
+            }
+
+
+            .brand-text {
+
+                display:
+                    none;
+            }
+
+
+            .navigation {
+
+                display:
+                    flex;
+
+                overflow-x:
+                    auto;
+
+                max-width:
+                    58%;
+
+                scrollbar-width:
+                    none;
+            }
+
+
+            .navigation::-webkit-scrollbar {
+
+                display:
+                    none;
+            }
+
+
+            .navigation a {
+
+                white-space:
+                    nowrap;
+
+                padding:
+                    7px 8px;
+
+                font-size:
+                    9px;
+            }
+
+
+            .main-container {
+
+                padding:
+                    10px 12px 0;
+            }
+
+
+            .hero {
+
+                grid-template-columns:
+                    1fr;
+
+                min-height:
+                    auto;
+            }
+
+
+            .hero-profile {
+
+                min-height:
+                    240px;
+
+                border-right:
+                    none;
+
+                border-bottom:
+                    1px solid #e1e7f0;
+            }
+
+
+            .hero-content {
+
+                padding:
+                    32px 25px;
+            }
+
+
+            .hero-title {
+
+                font-size:
+                    2.5rem;
+
+                letter-spacing:
+                    -1.8px;
+            }
+
+
+            .course-progress {
+
+                top:
+                    18px;
+
+                right:
+                    20px;
+            }
+
+
+            .skills-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .contact-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .navigation {
+
+                max-width:
+                    52%;
+            }
+
+
+            .navigation a {
+
+                font-size:
+                    8px;
+
+                padding:
+                    7px 6px;
+            }
+
+
+            .dark-mode-button {
+
+                width:
+                    36px;
+
+                height:
+                    36px;
+            }
+
+
+            .hero-title {
+
+                font-size:
+                    2.15rem;
+            }
+
+
+            .hero-description {
+
+                font-size:
+                    13px;
+            }
+
+
+            .skills-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .section-card {
+
+                padding:
+                    25px 20px;
+            }
+
+
+            .section-title {
+
+                font-size:
+                    25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         NAVBAR
+    ================================================== -->
+
+    <div class="navbar-wrapper">
+
+        <nav class="custom-navbar">
+
+
+            <!-- IDENTIDADE -->
+
+            <a
+                href="#inicio"
+                class="brand"
+            >
+
+                <img
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQEvbCnVYL_B7g/profile-displayphoto-scale_400_400/B4DZy9oxlhIwAo-/0/1772708110474?e=1788393600&v=beta&t=mpMBXQZEf98hB1rmpQwcksXbH8SiCDiT4TGSKLoYAh8"
+                    alt="Felipe Lopes Gonçalves"
+                    class="brand-photo"
+                >
+
+
+                <div class="brand-text">
+
+                    <span
+                        class="brand-name"
+                        data-i18n="navName"
+                    >
+                        Felipe Lopes
+                    </span>
+
+                    <span
+                        class="brand-role"
+                        data-i18n="navRole"
+                    >
+                        Engenharia de Software
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- NAVEGAÇÃO -->
+
+            <div class="navigation">
+
+                <a
+                    href="#sobre"
+                    class="active"
+                    data-i18n="navAbout"
+                >
+                    Sobre
+                </a>
+
+
+                <a
+                    href="#habilidades"
+                    data-i18n="navSkills"
+                >
+                    Habilidades
+                </a>
+
+
+                <a
+                    href="#trajetoria"
+                    data-i18n="navJourney"
+                >
+                    Trajetória
+                </a>
+
+
+                <a
+                    href="#contato"
+                    data-i18n="navContact"
+                >
+                    Contato
+                </a>
+
+            </div>
+
+
+            <!-- DARK MODE -->
+
+            <button
+                class="dark-mode-button"
+                id="darkModeButton"
+                onclick="toggleDarkMode()"
+                title="Alternar modo"
+                aria-label="Alternar modo"
+            >
+
+                <i
+                    id="darkModeIcon"
+                    class="bi bi-moon-fill"
+                ></i>
+
+            </button>
+
+
+        </nav>
+
+    </div>
+
+
+    <!-- ==================================================
+         CONTEÚDO
+    ================================================== -->
+
+    <main
+        class="main-container"
+        id="inicio"
+    >
+
+
+        <!-- ==================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+
+            <!-- ÁREA DA FOTO -->
+
+            <div class="hero-profile">
+
+
+                <!-- IDIOMAS -->
+
+                <div class="language-switcher">
+
+                    <button
+                        class="language-button active"
+                        id="ptButton"
+                        onclick="changeLanguage('pt')"
+                    >
+                        PT
+                    </button>
+
+
+                    <button
+                        class="language-button"
+                        id="enButton"
+                        onclick="changeLanguage('en')"
+                    >
+                        EN
+                    </button>
+
+                </div>
+
+
+                <!-- FOTO -->
+
+                <img
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQEvbCnVYL_B7g/profile-displayphoto-scale_400_400/B4DZy9oxlhIwAo-/0/1772708110474?e=1788393600&v=beta&t=mpMBXQZEf98hB1rmpQwcksXbH8SiCDiT4TGSKLoYAh8"
+                    alt="Foto de Felipe Lopes Gonçalves"
+                    class="profile-image"
+                >
+
+
+                <!-- STATUS -->
+
+                <div class="profile-status">
+
+                    <span class="status-dot"></span>
+
+                    <span data-i18n="availability">
+                        Disponível para oportunidades
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ==================================================
+                 CONTEÚDO DO HERO
+            ================================================== -->
+
+            <div class="hero-content">
+
+
+                <!-- CURSO -->
+
+                <div class="course-progress">
+
+                    <span data-i18n="graduation">
+                        Graduação
+                    </span>
+
+                    <strong>
+                        6/8
+                    </strong>
+
+                </div>
+
+
+                <!-- TAG -->
+
+                <div
+                    class="hero-tag"
+                    data-i18n="heroTag"
+                >
+                    Engenharia de Software
+                </div>
+
+
+                <!-- NOME -->
+
+                <h1 class="hero-title">
+
+                    Felipe Lopes
+                    <span>
+                        Gonçalves
+                    </span>
+
+                </h1>
+
+
+                <!-- CARGO -->
+
+                <div
+                    class="hero-role"
+                    data-i18n="heroRole"
+                >
+                    Estudante de Engenharia de Software
+                </div>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <p
+                    class="hero-description"
+                    data-i18n="heroDescription"
+                >
+                    Olá, me chamo Felipe Lopes, possuo 21 anos e sou
+                    estudante de Engenharia de Software. Gosto de
+                    ambas as áreas de Front-end e Back-end e pretendo
+                    continuar estudando e evoluindo em ambas.
+                </p>
+
+
+                <!-- INFORMAÇÕES -->
+
+                <div class="hero-info">
+
+
+                    <div class="info-pill">
+
+                        <i class="bi bi-code-slash"></i>
+
+                        <span data-i18n="frontend">
+                            Front-end
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-pill">
+
+                        <i class="bi bi-server"></i>
+
+                        <span data-i18n="backend">
+                            Back-end
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-pill">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        <span data-i18n="location">
+                            Quirinópolis, Brasil
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="hero-buttons">
+
+
+                    <a
+                        href="mailto:contatoshultzz@gmail.com"
+                        class="hero-button primary"
+                    >
+
+                        <i class="bi bi-envelope"></i>
+
+                        <span data-i18n="contactButton">
+                            Entrar em contato
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="tel:+5564992540808"
+                        class="hero-button secondary"
+                    >
+
+                        <i class="bi bi-telephone"></i>
+
+                        +55 64 99254-0808
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             SOBRE
+        ================================================== -->
+
+        <section
+            class="section"
+            id="sobre"
+        >
+
+            <div class="section-card">
+
+
+                <div
+                    class="section-label"
+                    data-i18n="aboutLabel"
+                >
+                    Perfil
+                </div>
+
+
+                <h2
+                    class="section-title"
+                    data-i18n="aboutTitle"
+                >
+                    Sobre mim
+                </h2>
+
+
+                <p
+                    class="about-text"
+                    data-i18n="aboutText"
+                >
+                    Olá, me chamo Felipe Lopes, possuo 21 anos e sou
+                    um estudante de Engenharia de Software. Gosto de
+                    ambas as áreas de Front-end e Back-end. Pretendo
+                    estudar ambas, e continuar evoluindo.
+
+                    <br><br>
+
+                    Estou atualmente cursando uma graduação de
+                    Engenharia de Software (6/8). Busco oportunidades
+                    para aplicar e expandir meus conhecimentos em
+                    desenvolvimento de sistemas.
+                </p>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             HABILIDADES
+        ================================================== -->
+
+        <section
+            class="section"
+            id="habilidades"
+        >
+
+            <div class="section-card">
+
+
+                <div
+                    class="section-label"
+                    data-i18n="skillsLabel"
+                >
+                    Stack
+                </div>
+
+
+                <h2
+                    class="section-title"
+                    data-i18n="skillsTitle"
+                >
+                    Habilidades & Conhecimentos
+                </h2>
+
+
+                <div class="skills-grid">
+
+
+                    <!-- HTML -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-filetype-html"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                HTML
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CSS -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-filetype-css"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                CSS
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- C -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-code-square"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                C
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- JAVA -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-cup-hot"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                Java
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- JAVASCRIPT -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-filetype-js"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                JavaScript
+                            </span>
+
+
+                            <span
+                                class="studying"
+                                data-i18n="studying"
+                            >
+                                ESTUDANDO
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GO -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-terminal"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                Go
+                            </span>
+
+
+                            <span
+                                class="studying"
+                                data-i18n="studying"
+                            >
+                                ESTUDANDO
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GITHUB -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-github"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                GitHub
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GIT -->
+
+                    <div class="skill-item">
+
+                        <div class="skill-icon">
+
+                            <i class="bi bi-git"></i>
+
+                        </div>
+
+
+                        <div class="skill-info">
+
+                            <span class="skill-name">
+                                Git
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             TRAJETÓRIA
+        ================================================== -->
+
+        <section
+            class="section"
+            id="trajetoria"
+        >
+
+            <div class="section-card">
+
+
+                <div
+                    class="section-label"
+                    data-i18n="journeyLabel"
+                >
+                    Jornada
+                </div>
+
+
+                <h2
+                    class="section-title"
+                    data-i18n="journeyTitle"
+                >
+                    Minha trajetória
+                </h2>
+
+
+                <div class="timeline">
+
+
+                    <!-- FORMAÇÃO -->
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+
+                        <div
+                            class="timeline-date"
+                            data-i18n="journeyDate1"
+                        >
+                            Formação atual
+                        </div>
+
+
+                        <div
+                            class="timeline-title"
+                            data-i18n="journeyTitle1"
+                        >
+                            Engenharia de Software
+                        </div>
+
+
+                        <p
+                            class="timeline-description"
+                            data-i18n="journeyText1"
+                        >
+                            Graduação em Engenharia de Software
+                            atualmente no 6º semestre de 8.
+                        </p>
+
+                    </div>
+
+
+                    <!-- DESENVOLVIMENTO -->
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+
+                        <div
+                            class="timeline-date"
+                            data-i18n="journeyDate2"
+                        >
+                            Atualmente
+                        </div>
+
+
+                        <div
+                            class="timeline-title"
+                            data-i18n="journeyTitle2"
+                        >
+                            Evolução em desenvolvimento
+                        </div>
+
+
+                        <p
+                            class="timeline-description"
+                            data-i18n="journeyText2"
+                        >
+                            Aprimoramento contínuo de conhecimentos
+                            em desenvolvimento Front-end e Back-end,
+                            buscando novas tecnologias e práticas de
+                            programação.
+                        </p>
+
+                    </div>
+
+
+                    <!-- OBJETIVO -->
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+
+                        <div
+                            class="timeline-date"
+                            data-i18n="journeyDate3"
+                        >
+                            Próximo passo
+                        </div>
+
+
+                        <div
+                            class="timeline-title"
+                            data-i18n="journeyTitle3"
+                        >
+                            Oportunidade profissional
+                        </div>
+
+
+                        <p
+                            class="timeline-description"
+                            data-i18n="journeyText3"
+                        >
+                            Busco oportunidades para aplicar meus
+                            conhecimentos, adquirir experiência
+                            profissional e continuar crescendo na
+                            área de desenvolvimento de software.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             CONTATO
+        ================================================== -->
+
+        <section
+            class="section"
+            id="contato"
+        >
+
+            <div class="section-card">
+
+
+                <div
+                    class="section-label"
+                    data-i18n="contactLabel"
+                >
+                    Contato
+                </div>
+
+
+                <h2
+                    class="section-title"
+                    data-i18n="contactTitle"
+                >
+                    Vamos conversar?
+                </h2>
+
+
+                <p
+                    class="about-text"
+                    data-i18n="contactDescription"
+                >
+                    Estou aberto a oportunidades, projetos e novas
+                    experiências na área de desenvolvimento.
+                </p>
+
+
+                <div class="contact-grid">
+
+
+                    <!-- EMAIL -->
+
+                    <a
+                        href="mailto:contatoshultzz@gmail.com"
+                        class="contact-item"
+                    >
+
+                        <div class="contact-icon">
+
+                            <i class="bi bi-envelope-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <div
+                                class="contact-label"
+                                data-i18n="emailLabel"
+                            >
+                                E-mail
+                            </div>
+
+
+                            <div class="contact-value">
+                                contatoshultzz@gmail.com
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- TELEFONE -->
+
+                    <a
+                        href="tel:+5564992540808"
+                        class="contact-item"
+                    >
+
+                        <div class="contact-icon">
+
+                            <i class="bi bi-telephone-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <div
+                                class="contact-label"
+                                data-i18n="phoneLabel"
+                            >
+                                Telefone
+                            </div>
+
+
+                            <div class="contact-value">
+                                +55 64 99254-0808
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+
+        <span data-i18n="footer">
+            © 2026 Felipe Lopes • Quirinópolis, Brasil.
+        </span>
+
+    </footer>
+
+
+    <!-- ==================================================
+         BOOTSTRAP JS
+    ================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script>
+
+
+        /* ==================================================
+           TRADUÇÕES
+        ================================================== */
+
+        const translations = {
+
+            pt: {
+
+                pageTitle:
+                    "Felipe Lopes Gonçalves | Engenharia de Software",
+
+                navName:
+                    "Felipe Lopes",
+
+                navRole:
+                    "Engenharia de Software",
+
+                navAbout:
+                    "Sobre",
+
+                navSkills:
+                    "Habilidades",
+
+                navJourney:
+                    "Trajetória",
+
+                navContact:
+                    "Contato",
+
+                availability:
+                    "Disponível para oportunidades",
+
+                graduation:
+                    "Graduação",
+
+                heroTag:
+                    "Engenharia de Software",
+
+                heroRole:
+                    "Estudante de Engenharia de Software",
+
+                heroDescription:
+                    "Olá, me chamo Felipe Lopes, possuo 21 anos e sou estudante de Engenharia de Software. Gosto de ambas as áreas de Front-end e Back-end e pretendo continuar estudando e evoluindo em ambas.",
+
+                frontend:
+                    "Front-end",
+
+                backend:
+                    "Back-end",
+
+                location:
+                    "Quirinópolis, Brasil",
+
+                contactButton:
+                    "Entrar em contato",
+
+                aboutLabel:
+                    "Perfil",
+
+                aboutTitle:
+                    "Sobre mim",
+
+                aboutText:
+                    "Olá, me chamo Felipe Lopes, possuo 21 anos e sou um estudante de Engenharia de Software. Gosto de ambas as áreas de Front-end e Back-end. Pretendo estudar ambas, e continuar evoluindo.<br><br>Estou atualmente cursando uma graduação de Engenharia de Software (6/8). Busco oportunidades para aplicar e expandir meus conhecimentos em desenvolvimento de sistemas.",
+
+                skillsLabel:
+                    "Stack",
+
+                skillsTitle:
+                    "Habilidades & Conhecimentos",
+
+                studying:
+                    "ESTUDANDO",
+
+                journeyLabel:
+                    "Jornada",
+
+                journeyTitle:
+                    "Minha trajetória",
+
+                journeyDate1:
+                    "Formação atual",
+
+                journeyTitle1:
+                    "Engenharia de Software",
+
+                journeyText1:
+                    "Graduação em Engenharia de Software atualmente no 6º semestre de 8.",
+
+                journeyDate2:
+                    "Atualmente",
+
+                journeyTitle2:
+                    "Evolução em desenvolvimento",
+
+                journeyText2:
+                    "Aprimoramento contínuo de conhecimentos em desenvolvimento Front-end e Back-end, buscando novas tecnologias e práticas de programação.",
+
+                journeyDate3:
+                    "Próximo passo",
+
+                journeyTitle3:
+                    "Oportunidade profissional",
+
+                journeyText3:
+                    "Busco oportunidades para aplicar meus conhecimentos, adquirir experiência profissional e continuar crescendo na área de desenvolvimento de software.",
+
+                contactLabel:
+                    "Contato",
+
+                contactTitle:
+                    "Vamos conversar?",
+
+                contactDescription:
+                    "Estou aberto a oportunidades, projetos e novas experiências na área de desenvolvimento.",
+
+                emailLabel:
+                    "E-mail",
+
+                phoneLabel:
+                    "Telefone",
+
+                footer:
+                    "© 2026 Felipe Lopes • Quirinópolis, Brasil."
+
+            },
+
+
+            en: {
+
+                pageTitle:
+                    "Felipe Lopes Gonçalves | Software Engineering",
+
+                navName:
+                    "Felipe Lopes",
+
+                navRole:
+                    "Software Engineering",
+
+                navAbout:
+                    "About",
+
+                navSkills:
+                    "Skills",
+
+                navJourney:
+                    "Journey",
+
+                navContact:
+                    "Contact",
+
+                availability:
+                    "Available for opportunities",
+
+                graduation:
+                    "Degree",
+
+                heroTag:
+                    "Software Engineering",
+
+                heroRole:
+                    "Software Engineering Student",
+
+                heroDescription:
+                    "Hello, my name is Felipe Lopes, I am 21 years old and I am a Software Engineering student. I enjoy both Front-end and Back-end development and intend to keep studying and improving in both areas.",
+
+                frontend:
+                    "Front-end",
+
+                backend:
+                    "Back-end",
+
+                location:
+                    "Quirinópolis, Brazil",
+
+                contactButton:
+                    "Get in touch",
+
+                aboutLabel:
+                    "Profile",
+
+                aboutTitle:
+                    "About me",
+
+                aboutText:
+                    "Hello, my name is Felipe Lopes, I am 21 years old and I am a Software Engineering student. I enjoy both Front-end and Back-end development. I intend to study both areas and continue improving.<br><br>I am currently pursuing a degree in Software Engineering (6/8). I am looking for opportunities to apply and expand my knowledge in software development.",
+
+                skillsLabel:
+                    "Stack",
+
+                skillsTitle:
+                    "Skills & Knowledge",
+
+                studying:
+                    "STUDYING",
+
+                journeyLabel:
+                    "Journey",
+
+                journeyTitle:
+                    "My journey",
+
+                journeyDate1:
+                    "Current education",
+
+                journeyTitle1:
+                    "Software Engineering",
+
+                journeyText1:
+                    "Software Engineering degree currently in the 6th semester out of 8.",
+
+                journeyDate2:
+                    "Currently",
+
+                journeyTitle2:
+                    "Development growth",
+
+                journeyText2:
+                    "Continuously improving my knowledge in Front-end and Back-end development while exploring new technologies and programming practices.",
+
+                journeyDate3:
+                    "Next step",
+
+                journeyTitle3:
+                    "Professional opportunity",
+
+                journeyText3:
+                    "I am looking for opportunities to apply my knowledge, gain professional experience and continue growing in software development.",
+
+                contactLabel:
+                    "Contact",
+
+                contactTitle:
+                    "Let's talk?",
+
+                contactDescription:
+                    "I am open to opportunities, projects and new experiences in software development.",
+
+                emailLabel:
+                    "Email",
+
+                phoneLabel:
+                    "Phone",
+
+                footer:
+                    "© 2026 Felipe Lopes • Quirinópolis, Brazil."
+
+            }
+
+        };
+
+
+        /* ==================================================
+           IDIOMA ATUAL
+        ================================================== */
+
+        let currentLanguage =
+            localStorage.getItem("language") || "pt";
+
+
+        /* ==================================================
+           ALTERAR IDIOMA
+        ================================================== */
+
+        function changeLanguage(language) {
+
+            currentLanguage =
+                language;
+
+
+            const texts =
+                translations[language];
+
+
+            document
+                .querySelectorAll("[data-i18n]")
+                .forEach(function (element) {
+
+                    const key =
+                        element.getAttribute(
+                            "data-i18n"
+                        );
+
+
+                    if (
+                        texts[key] !== undefined
+                    ) {
+
+                        element.innerHTML =
+                            texts[key];
+
+                    }
+
+                });
+
+
+            document.title =
+                texts.pageTitle;
+
+
+            document.documentElement.lang =
+                language === "pt"
+                    ? "pt-BR"
+                    : "en";
+
+
+            document
+                .getElementById("ptButton")
+                .classList.toggle(
+                    "active",
+                    language === "pt"
+                );
+
+
+            document
+                .getElementById("enButton")
+                .classList.toggle(
+                    "active",
+                    language === "en"
+                );
+
+
+            localStorage.setItem(
+                "language",
+                language
+            );
+
+        }
+
+
+        /* ==================================================
+           DARK MODE
+        ================================================== */
+
+        function toggleDarkMode() {
+
+            const body =
+                document.body;
+
+            const icon =
+                document.getElementById(
+                    "darkModeIcon"
+                );
+
+
+            body.classList.toggle(
+                "dark-mode"
+            );
+
+
+            if (
+                body.classList.contains(
+                    "dark-mode"
+                )
+            ) {
+
+                icon.className =
+                    "bi bi-sun-fill";
+
+
+                localStorage.setItem(
+                    "darkMode",
+                    "true"
+                );
+
+            }
+
+            else {
+
+                icon.className =
+                    "bi bi-moon-fill";
+
+
+                localStorage.setItem(
+                    "darkMode",
+                    "false"
+                );
+
+            }
+
+        }
+
+
+        /* ==================================================
+           RESTAURAR CONFIGURAÇÕES
+        ================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* DARK MODE */
+
+                if (
+                    localStorage.getItem(
+                        "darkMode"
+                    ) === "true"
+                ) {
+
+                    document.body.classList.add(
+                        "dark-mode"
+                    );
+
+
+                    document
+                        .getElementById(
+                            "darkModeIcon"
+                        )
+                        .className =
+                            "bi bi-sun-fill";
+
+                }
+
+
+                /* IDIOMA */
+
+                changeLanguage(
+                    currentLanguage
+                );
+
+            }
+        );
+
+
+        /* ==================================================
+           ANIMAÇÃO "ESTUDANDO"
+        ================================================== */
+
+        const studyingElements =
+            document.querySelectorAll(
+                ".studying"
+            );
+
+
+        studyingElements.forEach(
+            function (element) {
+
+                let dots =
+                    0;
+
+
+                setInterval(
+                    function () {
+
+                        dots++;
+
+
+                        if (
+                            dots > 3
+                        ) {
+
+                            dots =
+                                0;
+
+                        }
+
+
+                        const studyingText =
+                            translations[
+                                currentLanguage
+                            ].studying;
+
+
+                        element.textContent =
+                            studyingText +
+                            ".".repeat(
+                                dots
+                            );
+
+
+                        element.style.transform =
+                            "translateY(-2px)";
+
+
+                        setTimeout(
+                            function () {
+
+                                element.style.transform =
+                                    "translateY(0)";
+
+                            },
+                            180
+                        );
+
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+
+        /* ==================================================
+           NAVEGAÇÃO ATIVA
+        ================================================== */
+
+        const navigationLinks =
+            document.querySelectorAll(
+                ".navigation a"
+            );
+
+
+        navigationLinks.forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navigationLinks.forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        link.classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
